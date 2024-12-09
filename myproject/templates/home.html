@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Subscription Form{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Step into the Future with Your Personalized Digital Self!</h1>
+    <p>Tell Us About You and Pick a Date for Your Customized Setup</p>
+
+    <form action="/" method="POST">
+        {% csrf_token %}
+        <!-- Personal Information -->
+        <h2>Personal Information</h2>
+        <div class="form-group">
+            <label for="full_name">Full Name (Required):</label>
+            <input type="text" id="full_name" name="full_name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address (Required):</label>
+            <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number (Required):</label>
+            <input type="tel" id="phone" name="phone" placeholder="+44 123 456 7890" required>
+        </div>
+        <div class="form-group">
+            <label for="contact_method">Preferred Contact Method:</label>
+            <select id="contact_method" name="contact_method">
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="whatsapp">WhatsApp</option>
+            </select>
+        </div>
+
+        <!-- Goals and Interests -->
+        <h2>Goals and Interests</h2>
+        <div class="form-group">
+            <label for="goals">What would you like to achieve with your Digital Self? (Required):</label>
+            <select id="goals" name="goals" required>
+                <option value="career_growth">Career Growth</option>
+                <option value="business_development">Business Development</option>
+                <option value="passive_income">Passive Income</option>
+                <option value="personal_branding">Personal Branding</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="text" id="custom_goal" name="custom_goal" placeholder="Other (please specify)">
+        </div>
+
+        <div class="form-group">
+            {% csrf_token %}
+            <label>What tools or features are most important to you? (Select all that apply):</label>
+            <div>
+                <input type="checkbox" id="monetization" name="features" value="Monetization Tools">
+                <label for="monetization">Monetization Tools</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ai_insights" name="features" value="AI-Powered Insights">
+                <label for="ai_insights">AI-Powered Insights</label>
+            </div>
+            <div>
+                <input type="checkbox" id="content_management" name="features" value="Content Management">
+                <label for="content_management">Content Management</label>
+            </div>
+            <div>
+                <input type="checkbox" id="career_planning" name="features" value="Career Planning">
+                <label for="career_planning">Career Planning</label>
+            </div>
+            <div>
+                <input type="checkbox" id="networking" name="features" value="Networking Opportunities">
+                <label for="networking">Networking Opportunities</label>
+            </div>
+            <input type="text" id="custom_feature" name="custom_feature" placeholder="Other (please specify)">
+        </div>
+
+        <!-- Subscription Plan -->
+        <h2>Subscription Plan</h2>
+        <p><strong>Subscription Package:</strong> Pre-selected at £29/month for 2 years (70% discount).</p>
+
+        <!-- Schedule Your Meeting -->
+        <h2>Schedule Your Meeting</h2>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="meeting_date">Choose Your Preferred Meeting Date and Time (Required):</label>
+            <input type="datetime-local" id="meeting_date" name="meeting_date" required>
+        </div>
+        <div class="form-group">
+            <label for="time_zone">Time Zone:</label>
+            <select id="time_zone" name="time_zone">
+                <option value="auto">Auto-detected</option>
+                <option value="GMT">GMT</option>
+                <option value="EST">EST</option>
+                <option value="PST">PST</option>
+                <!-- Add more time zones as needed -->
+            </select>
+        </div>
+
+        <!-- Payment Information -->
+        <h2>Payment Information</h2>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="card_number">Card Number:</label>
+            <input type="password" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+        </div>
+        <div class="form-group">
+            <label for="expiry_date">Expiry Date:</label>
+            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" name="cvv" placeholder="123" required>
+        </div>
+        <div class="form-group">
+            <label for="billing_address">Billing Address:</label>
+            <input type="text" id="billing_address" name="billing_address" placeholder="Street Address" required>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <input type="text" id="postcode" name="postcode" placeholder="Postcode" required>
+            <input type="text" id="country" name="country" placeholder="Country" required>
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="form-group">
+            {% csrf_token %}
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the Terms & Conditions and understand the cancellation policy.</label>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="money_back" name="money_back" required>
+            <label for="money_back">I understand the 30-day money-back guarantee and the requirements to cancel.</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Subscribe and Schedule</button>
+
+    </form>
+</div>
+{% endblock %}
